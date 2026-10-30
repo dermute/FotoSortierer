@@ -1,0 +1,80 @@
+FOTOSORTIERER – KURZANLEITUNG
+
+1. Ordner auswählen oder einzelne Fotos und Videos hinzufügen. Sie können Dateien
+   und Ordner auch in das Fenster ziehen. Unterordner werden standardmäßig gelesen.
+2. „Kopien erstellen“ lässt Ihre Originale unverändert. Wählen Sie einen separaten
+   Zielordner, z. B. auf Ihrem USB-Stick. Alle Kopien landen gemeinsam dort.
+   „Originale umbenennen“ ändert die Namen direkt in den bisherigen Ordnern.
+3. Prüfen Sie die Vorschau. Gelb markierte Zeilen enthalten Hinweise zum Datum.
+   Mit „Nur Warnungen anzeigen“ finden Sie diese Dateien schneller.
+4. Wählen Sie eine Zeile und „Datum korrigieren“, wenn Datum oder Uhrzeit falsch
+   sind. Entfernen Sie das Häkchen, um eine Datei auszuschließen. Korrekturen
+   gelten nur für diese Auswahl; die Metadaten der Datei werden nicht verändert.
+5. „Kopien erstellen“ oder „Jetzt umbenennen“ startet den Vorgang.
+
+DATEINAMEN UND SORTIERUNG
+
+Beispiel: 2025-07-18_14-32-05_IMG_1234.jpg
+Jahr, Monat, Tag und Uhrzeit stehen vorn. Der bisherige Name bleibt dahinter
+erhalten. Gleiche Zielnamen erhalten Zusätze wie _002. Auf dem Fernseher wählen
+Sie aufsteigende Sortierung nach Dateiname.
+
+Ein bereits vorhandener Präfix im Format JJJJ-MM-TT_HH-MM-SS_ wird ersetzt.
+Der restliche Dateiname bleibt erhalten. Vorhandene Zieldateien werden niemals
+überschrieben. Verwenden Sie einen leeren Zielordner für einen neuen Durchlauf.
+
+WOHER KOMMT DAS DATUM?
+
+Zuerst verwendet FotoSortierer das EXIF-Aufnahmedatum, danach entsprechende
+XMP-Aufnahmedaten oder Video-Aufnahmedaten. Fehlen diese, folgen eingebettete
+Digitalisierungs-/Erstellungsdaten, Datumsangaben im Dateinamen, das Datum der
+Dateiänderung und zuletzt das Datum der Dateierstellung.
+Dateisystemdaten können beim Kopieren oder Bearbeiten verändert worden sein.
+Bitte prüfen Sie diese gelb markierten Vorschläge. Enthält der Dateiname nur ein
+Datum ohne Uhrzeit, wird 00:00:00 angenommen und ein Hinweis angezeigt.
+Ohne verwendbares Datum müssen Sie ein Datum eingeben oder die Datei ausschließen.
+
+REISEZEITZONE
+
+Unter „Weitere Einstellungen“ wählen Sie bei Bedarf die Zeitzone des Reiseziels.
+Voreingestellt ist die Zeitzone Ihres Computers. Kameraangaben ohne Zeitzone
+bleiben so erhalten, wie die Kamera sie aufgezeichnet hat. Angaben mit UTC oder
+Zeitzonenversatz werden in die Reisezeitzone umgerechnet. QuickTime-Containerdaten
+werden als UTC interpretiert und zur Prüfung markiert, weil manche Geräte hier
+abweichend lokale Zeiten speichern. Bei einer Reise über mehrere Zeitzonen ist
+eine einzige Reisezeitzone nur eine Annahme; korrigieren Sie betroffene Dateien.
+Falsch eingestellte Kamerauhren werden nicht automatisch korrigiert.
+
+ABBRUCH UND RÜCKGÄNGIG
+
+Beim Kopieren bleiben bereits abgeschlossene Kopien erhalten. Unvollständige
+Kopien werden entfernt, soweit das Laufwerk noch erreichbar ist. Die Originale
+werden nicht gelöscht.
+
+Die letzte Umbenennung können Sie auch nach einem Neustart rückgängig machen.
+Bei einer Unterbrechung wählen Sie ebenfalls „Letzte Umbenennung rückgängig
+machen“. Manche Dateien können bis dahin vorübergehende Namen mit dem Anfang
+.fotosortierer- und der Endung .tmp tragen. Verschieben oder bearbeiten Sie diese
+Dateien nicht. Schließen Sie einen entfernten USB-Stick wieder an, bevor Sie die
+Wiederherstellung versuchen. Konflikte oder veränderte Dateien werden gemeldet;
+sie werden nicht überschrieben. Ein Abbruch der Wiederherstellung lässt sich
+durch erneutes Rückgängigmachen fortsetzen.
+
+Das Wiederherstellungsprotokoll liegt unter:
+%LOCALAPPDATA%\FotoSortierer\letzte-umbenennung.json
+Während eines Vorgangs gehört die gleichnamige Datei mit der Endung .json.wal dazu.
+Es enthält Dateipfade und Prüfsummen. Löschen Sie es nicht, solange eine
+Wiederherstellung benötigt wird. Eine neue Umbenennung ersetzt dieses Protokoll.
+
+UNTERSTÜTZTE DATEIEN
+
+JPEG, HEIC/HEIF, PNG, TIFF, WebP, DNG, ARW, CRW/CR2/CR3, NEF, ORF, PEF, RAF,
+RW2, SRW sowie MOV, MP4 und AVI. Nicht unterstützte oder nicht lesbare Dateien
+erscheinen im Protokoll. Das Programm konvertiert keine Formate. Ob Ihr Fernseher
+z. B. HEIC, RAW oder ein bestimmtes Video abspielen kann, hängt vom Fernseher ab.
+Sehr lange Zielpfade (über 240 Zeichen) werden vor der Ausführung abgewiesen.
+Verknüpfte Ordner werden übersprungen.
+
+FotoSortierer läuft lokal und lädt keine Dateien hoch. Sie benötigen keine
+Installation, keine Administratorrechte und keine Internetverbindung. Windows
+kann beim ersten Start eines noch nicht signierten Programms einen Hinweis zeigen.

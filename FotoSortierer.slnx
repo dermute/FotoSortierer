@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/FotoSortierer.Core/FotoSortierer.Core.csproj" />
+  <Project Path="src/FotoSortierer.App/FotoSortierer.App.csproj" />
+  <Project Path="tests/FotoSortierer.Tests/FotoSortierer.Tests.csproj" />
+</Solution>

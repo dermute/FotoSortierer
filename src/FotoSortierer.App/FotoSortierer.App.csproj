@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <AssemblyName>FotoSortierer</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>0.1.0</Version>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../FotoSortierer.Core/FotoSortierer.Core.csproj" />
+    <EmbeddedResource Include="../../docs/Anleitung.txt" Link="Anleitung.txt" />
+    <EmbeddedResource Include="../../docs/THIRD-PARTY-NOTICES.txt" Link="THIRD-PARTY-NOTICES.txt" />
+    <EmbeddedResource Include="$(GeneratedNoticesPath)" LogicalName="FotoSortierer.RuntimeNotices.txt" Condition="'$(GeneratedNoticesPath)' != ''" />
+  </ItemGroup>
+</Project>

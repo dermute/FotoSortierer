@@ -1,0 +1,61 @@
+name: Windows-Build, Tests und Veröffentlichung
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Programmkern und Wiederherstellung testen
+        run: dotnet test tests/FotoSortierer.Tests/FotoSortierer.Tests.csproj -c Release --logger "trx;LogFileName=tests.trx"
+      - name: Portable EXE erstellen
+        shell: pwsh
+        run: ./scripts/publish.ps1
+      - name: Gebündelte Windows-Anwendung prüfen
+        shell: pwsh
+        run: |
+          $env:DOTNET_ROOT = Join-Path $env:RUNNER_TEMP 'no-installed-dotnet'
+          $env:DOTNET_MULTILEVEL_LOOKUP = '0'
+          $app = Start-Process ./artifacts/win-x64/FotoSortierer.exe -ArgumentList '--smoke-test' -PassThru
+          if (!$app.WaitForExit(30000)) { $app.Kill(); throw 'Anwendungsstart hat das Zeitlimit überschritten.' }
+          if ($app.ExitCode -ne 0) { throw "Anwendungsstart fehlgeschlagen: $($app.ExitCode)" }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FotoSortierer-Windows-x64
+          path: artifacts/win-x64/FotoSortierer.exe
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: Testergebnisse
+          path: tests/**/TestResults/*.trx
+  release:
+    name: EXE als GitHub-Release veröffentlichen
+    if: startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push'
+    needs: windows
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: FotoSortierer-Windows-x64
+          path: artifacts/win-x64
+      - name: Geprüfte EXE und Versionshinweise veröffentlichen
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          $notes = "docs/releases/$env:RELEASE_TAG.md"
+          if (!(Test-Path $notes)) { throw "Deutsche Versionshinweise fehlen: $notes" }
+          gh release create $env:RELEASE_TAG ./artifacts/win-x64/FotoSortierer.exe --verify-tag --title "FotoSortierer $env:RELEASE_TAG" --notes-file $notes
+          if ($LASTEXITCODE -ne 0) { throw 'Veröffentlichen des Releases fehlgeschlagen.' }
