@@ -121,7 +121,7 @@ Dieses Projekt wurde mit KI-Unterstützung entwickelt.
 
 <div style="display: flex; align-items: center; white-space: nowrap; gap: 0.5rem; padding: 8px;">
   <div style="font-family: IBM Plex Sans; font-weight: 400; font-size: 16px; line-height: 22px; letter-spacing: 0px;">
-    <a rel="noopener noreferrer" href="https://aiattribution.github.io/?model=Fable%205%2C%20Opus%204.8%2C%20GPT%205.6%20Sol" data-cy="recommended-attribution-statement-text" target="_blank" style="font-family: IBM Plex Sans; font-weight: 400; font-size: 16px; line-height: 22px; letter-spacing: 0px;">AIA EAI Hin Nr Fable 5, Opus 4.8, GPT 5.6 Sol</a>
+    <a rel="noopener noreferrer" href="https://aiattribution.github.io/?model=GPT-v1.0" data-cy="recommended-attribution-statement-text" target="_blank" style="font-family: IBM Plex Sans; font-weight: 400; font-size: 16px; line-height: 22px; letter-spacing: 0px;">AIA EAI Hin Nr GPT v1.0</a>
   </div>
   <div style="display: flex; gap: 0.5rem;">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
