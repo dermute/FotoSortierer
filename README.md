@@ -22,6 +22,31 @@ IMG_1234.jpg → 2025-07-18_14-32-05_IMG_1234.jpg
 Details: [deutsche Anleitung](docs/Anleitung.txt).
 Das Programm benennt Dateien um und konvertiert keine Foto-/Videoformate.
 
+## So entsteht der Dateiname
+
+Die erste Quelle mit einem gültigen Datum gewinnt. Innerhalb der beiden
+Metadaten-Blöcke gilt die angegebene Reihenfolge; fehlt ein gültiges Datum,
+geht es zur nächsten Quelle.
+
+```mermaid
+flowchart TD
+    A["Aufnahme: EXIF → XMP → Video"] -->|Sonst| B["Eingebettete Erstellung: EXIF-Digitalisierung → XMP → QuickTime"]
+    B -->|Sonst| C["Datum im Dateinamen"]
+    C -->|Sonst| D["Datum der Dateiänderung"]
+    D -->|Sonst| E["Datum der Dateierstellung"]
+    E -->|Sonst| M["Datum manuell eingeben oder Datei ausschließen"]
+    A & B & C & D & E -->|Gültiges Datum| N["JJJJ-MM-TT_HH-mm-ss_Originalname.Endung"]
+    M -->|Datum eingegeben| N
+```
+
+Eine manuelle Datumskorrektur in der Vorschau hat Vorrang. UTC-/Offset-Angaben
+werden in die Reisezeitzone umgerechnet; Kamera-Lokalzeiten bleiben erhalten.
+Ein Datum im Dateinamen ohne Uhrzeit erhält `00:00:00` und einen Prüfhinweis.
+
+Ein vorhandener Zeitpräfix im selben Format wird ersetzt. Bei gleichen Zielnamen
+innerhalb der Auswahl folgen Zusätze wie `_002` vor der Dateiendung. Bereits
+vorhandene Zieldateien werden nicht überschrieben.
+
 ## Herunterladen und starten
 
 Die aktuelle **[FotoSortierer.exe herunterladen](https://github.com/dermute/FotoSortierer/releases/latest/download/FotoSortierer.exe)**
