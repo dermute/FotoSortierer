@@ -24,8 +24,8 @@ Das Programm benennt Dateien um und konvertiert keine Foto-/Videoformate.
 
 ## Herunterladen und starten
 
-Die aktuelle **[FotoSortierer.exe herunterladen](https://github.com/dermute/photorename/releases/latest/download/FotoSortierer.exe)**
-oder alle [Veröffentlichungen ansehen](https://github.com/dermute/photorename/releases).
+Die aktuelle **[FotoSortierer.exe herunterladen](https://github.com/dermute/FotoSortierer/releases/latest/download/FotoSortierer.exe)**
+oder alle [Veröffentlichungen ansehen](https://github.com/dermute/FotoSortierer/releases).
 
 Die EXE unter Windows 11 (64 Bit, x64) starten. Sie benötigt keine Installation,
 keine Administratorrechte und keine separat installierte .NET-Laufzeit.
